@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ECC Toy Cryptography</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="page-header">
+            <h1>Elliptic Curve Cryptography</h1>
+            <p>Private Key → Public Key</p>
+        </header>
+
+        <section class="card">
+
+            <h2>Curve Parameters</h2>
+
+            <p id="curve-equation"></p>
+            <p id="base-point"></p>
+
+        </section>
+
+        <section class="card">
+
+            <h2>Generate Public Key</h2>
+
+            <form id="key-form">
+
+                <label for="private-key">
+                    Private Key (k)
+                </label>
+
+                <input
+                    type="number"
+                    id="private-key"
+                    min="1"
+                    max="8"
+                    step="1"
+                    value="6"
+                    required
+                >
+
+                <button type="submit">
+                    Generate Public Key
+                </button>
+
+            </form>
+
+            <p id="error-message" role="alert"></p>
+
+        </section>
+
+        <section class="card" id="results-section" hidden>
+
+            <h2>Scalar Multiplication Steps</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Point</th>
+                    </tr>
+                </thead>
+
+                <tbody id="steps-body"></tbody>
+            </table>
+
+            <div class="public-key-box">
+                <h3>TOY PUBLIC KEY</h3>
+                <p id="public-key-result"></p>
+            </div>
+
+        </section>
+
+
+        <section class="card" id="statistics-section">
+
+            <h2>Statistical Exploration</h2>
+
+            <p>
+                Explore the statistical properties of
+                elliptic-curve scalar multiplication.
+            </p>
+
+            <button type="button" id="analyze-button">
+                Run Statistical Analysis
+            </button>
+
+            <div id="statistics-results" hidden>
+
+                <h3>Coordinate Distribution</h3>
+
+                <h4>X Coordinates</h4>
+                <div id="x-frequency"></div>
+
+                <h4>Y Coordinates</h4>
+                <div id="y-frequency"></div>
+
+                <h3>Bit Distribution</h3>
+                <div id="bit-results"></div>
+
+                <h3>Input-Output Correlation</h3>
+                <div id="correlation-results"></div>
+
+                <h3>Avalanche-like Behaviour</h3>
+                <div id="avalanche-results"></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fa;
+    color: #1e293b;
+}
+
+.container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-header h1 {
+    margin-bottom: 10px;
+    color: #1e3a8a;
+}
+
+.page-header p {
+    color: #64748b;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    padding: 13px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background-color: #f1f5f9;
+}
+
+.public-key-box {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #eff6ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.public-key-box h3 {
+    color: #1e40af;
+}
+
+.public-key-box p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#error-message {
+    color: #dc2626;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+#statistics-results {
+    margin-top: 25px;
+}
+
+#statistics-results h3 {
+    margin-top: 30px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.frequency-row {
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    gap: 12px;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.frequency-bar {
+    height: 16px;
+    background-color: #2563eb;
+    border-radius: 4px;
+}
+
+#bit-results,
+#correlation-results {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+#avalanche-results {
+    overflow-x: auto;
+}
