@@ -192,3 +192,36 @@ th {
         flex-direction: column;
     }
 }
+
+
+.math-explanation {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    background-color: #f8fbff;
+}
+
+.math-explanation h4 {
+    margin-top: 0;
+    color: #1e40af;
+}
+
+.formula-block {
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.formula-block:last-child {
+    border-bottom: none;
+}
+
+.formula-block p {
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+#operation-type {
+    font-weight: bold;
+    color: #475569;
+}

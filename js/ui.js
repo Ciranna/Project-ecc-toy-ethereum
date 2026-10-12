@@ -1,4 +1,7 @@
 
+import { explainPointAddition } from "./curveExplanation.js";
+import { BASE_POINT, CURVE } from "./config.js";
+
 export function displayCurve(curve, basePoint) {
     const equation = document.getElementById(
         "curve-equation"
@@ -226,6 +229,8 @@ function updateStepVisualizer() {
             : `${step.multiplier}G = (${point.x}, ${point.y})`;
     }
 
+    updateMathExplanation();
+
     previousButton.disabled = currentStepIndex === 0;
     nextButton.disabled = currentStepIndex === total;
 }
@@ -256,3 +261,69 @@ export function resetSteps() {
 }
 
 
+
+function updateMathExplanation() {
+    const container = document.getElementById(
+        "math-explanation"
+    );
+
+    if (currentStepIndex === 0) {
+        container.hidden = true;
+        return;
+    }
+
+    const current = visualizationSteps[currentStepIndex - 1];
+
+    const previousPoint = currentStepIndex === 1
+        ? null
+        : visualizationSteps[currentStepIndex - 2].point;
+
+    const explanation = explainPointAddition(
+        previousPoint,
+        BASE_POINT
+    );
+
+    container.hidden = false;
+
+    const type = document.getElementById("operation-type");
+    const slopeFormula = document.getElementById("slope-formula");
+    const slopeCalculation = document.getElementById("slope-calculation");
+    const xCalculation = document.getElementById("x-calculation");
+    const yCalculation = document.getElementById("y-calculation");
+
+    if (explanation.type === "identity" ||
+        explanation.type === "infinity") {
+
+        type.textContent = explanation.description;
+
+        slopeFormula.textContent = "";
+        slopeCalculation.textContent = "";
+        xCalculation.textContent = "";
+        yCalculation.textContent = "";
+
+        return;
+    }
+
+    const e = explanation;
+
+    type.textContent = e.type === "doubling"
+        ? "Point Doubling (P + P)"
+        : "Point Addition (P + Q)";
+
+    slopeFormula.textContent =
+        e.type === "doubling"
+            ? "λ = (3x₁² + a) / (2y₁) mod p"
+            : "λ = (y₂ - y₁) / (x₂ - x₁) mod p";
+
+    slopeCalculation.textContent =
+        `λ = (${e.numerator} × ${e.inverse}) mod ${CURVE.p} = ${e.lambda}` +
+        ` (inverse of ${e.normalizedDenominator} is ${e.inverse})`;
+
+    xCalculation.textContent =
+        `x₃ = (${e.lambda}² - ${e.P.x} - ${e.Q.x}) mod ${CURVE.p}` +
+        ` = ${e.result.x}`;
+
+    yCalculation.textContent =
+        `y₃ = (${e.lambda} × (${e.P.x} - ${e.result.x}) - ${e.P.y})` +
+        ` mod ${CURVE.p} = ${e.result.y}`;
+}
