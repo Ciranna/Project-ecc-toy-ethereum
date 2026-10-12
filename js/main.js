@@ -14,7 +14,11 @@ import {
     getPrivateKey,
     displayResult,
     displayError,
-    clearError
+    clearError,
+    initializeStepVisualizer,
+    nextStep,
+    previousStep,
+    resetSteps
 } from "./ui.js";
 
 
@@ -48,6 +52,16 @@ function init() {
     document.getElementById("analyze-button")
         .addEventListener("click", handleStatistics);
 
+    
+    document.getElementById("next-step")
+        .addEventListener("click", nextStep);
+
+    document.getElementById("previous-step")
+        .addEventListener("click", previousStep);
+
+    document.getElementById("reset-steps")
+        .addEventListener("click", resetSteps);
+
 }
 
 
@@ -63,6 +77,8 @@ function handleGenerateKey(event) {
         const result = scalarMultiply(k, BASE_POINT);
 
         displayResult(result);
+
+        initializeStepVisualizer(result.steps);
 
     } catch (error) {
         document.getElementById(

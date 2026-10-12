@@ -180,3 +180,79 @@ export function displayStatistics(stats) {
     ).hidden = false;
 }
 
+
+// State of the step-by-step visualizer
+let visualizationSteps = [];
+let currentStepIndex = 0;
+
+
+// Initialize visualization with new calculation
+export function initializeStepVisualizer(steps) {
+    visualizationSteps = steps;
+    currentStepIndex = 0;
+
+    updateStepVisualizer();
+}
+
+
+// Show the current step
+function updateStepVisualizer() {
+    const counter = document.getElementById("step-counter");
+    const operation = document.getElementById("step-operation");
+    const pointDisplay = document.getElementById("step-point");
+
+    const previousButton = document.getElementById("previous-step");
+    const nextButton = document.getElementById("next-step");
+
+    const total = visualizationSteps.length;
+
+    counter.textContent =
+        `Step ${currentStepIndex} of ${total}`;
+
+    if (currentStepIndex === 0) {
+        operation.textContent = "Press Next Step to begin.";
+        pointDisplay.textContent = "Ready";
+    } else {
+        const step = visualizationSteps[currentStepIndex - 1];
+
+        operation.textContent = currentStepIndex === 1
+            ? "Start from the base point G"
+            : `${currentStepIndex - 1}G + G = ${currentStepIndex}G`;
+
+        const point = step.point;
+
+        pointDisplay.textContent = point === null
+            ? "Point at infinity"
+            : `${step.multiplier}G = (${point.x}, ${point.y})`;
+    }
+
+    previousButton.disabled = currentStepIndex === 0;
+    nextButton.disabled = currentStepIndex === total;
+}
+
+
+// Advance one step
+export function nextStep() {
+    if (currentStepIndex < visualizationSteps.length) {
+        currentStepIndex++;
+        updateStepVisualizer();
+    }
+}
+
+
+// Go back one step
+export function previousStep() {
+    if (currentStepIndex > 0) {
+        currentStepIndex--;
+        updateStepVisualizer();
+    }
+}
+
+
+// Restart the visualization
+export function resetSteps() {
+    currentStepIndex = 0;
+    updateStepVisualizer();
+}
+
+

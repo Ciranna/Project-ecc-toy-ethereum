@@ -147,3 +147,48 @@ th {
 #avalanche-results {
     overflow-x: auto;
 }
+
+
+.step-visualizer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+#step-counter {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.step-display {
+    padding: 25px;
+    margin: 15px 0;
+    background-color: #eff6ff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#step-point {
+    color: #1e40af;
+    font-size: 24px;
+}
+
+.step-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.step-controls button {
+    flex: 1;
+}
+
+.step-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .step-controls {
+        flex-direction: column;
+    }
+}
