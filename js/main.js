@@ -18,7 +18,8 @@ import {
     initializeStepVisualizer,
     nextStep,
     previousStep,
-    resetSteps
+    resetSteps,
+    displayStatisticalSummary
 } from "./ui.js";
 
 
@@ -27,7 +28,8 @@ import {
     coordinateFrequency,
     bitDistribution,
     correlation,
-    avalancheAnalysis
+    avalancheAnalysis,
+    summarizeStatistics
 } from "./statistics.js";
 
 import { displayStatistics } from "./ui.js";
@@ -92,6 +94,7 @@ function handleGenerateKey(event) {
 
 function handleStatistics() {
     const dataset = generateDataset(BASE_POINT, 8);
+    const summary = summarizeStatistics(dataset);
 
     const stats = {
         xFrequency: coordinateFrequency(
@@ -114,6 +117,8 @@ function handleStatistics() {
     };
 
     displayStatistics(stats);
+
+    displayStatisticalSummary(summary);
 }
 
 

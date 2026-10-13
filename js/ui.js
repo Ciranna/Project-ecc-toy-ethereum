@@ -327,3 +327,36 @@ function updateMathExplanation() {
         `y₃ = (${e.lambda} × (${e.P.x} - ${e.result.x}) - ${e.P.y})` +
         ` mod ${CURVE.p} = ${e.result.y}`;
 }
+
+
+export function displayStatisticalSummary(summary) {
+    const setText = (id, value) => {
+        document.getElementById(id).textContent = value;
+    };
+
+    setText("summary-sample", summary.sampleSize);
+
+    setText("summary-unique-x", summary.uniqueX);
+
+    setText("summary-unique-y", summary.uniqueY);
+
+    setText(
+        "summary-x-bits",
+        `${summary.xOnesPercentage.toFixed(2)}%`
+    );
+
+    setText(
+        "summary-y-bits",
+        `${summary.yOnesPercentage.toFixed(2)}%`
+    );
+
+    const avalanche = summary.averageAvalanchePercentage;
+
+    setText(
+        "summary-avalanche",
+        avalanche === null
+            ? "N/A"
+            : `${avalanche.toFixed(2)}%`
+    );
+}
+

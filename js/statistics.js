@@ -147,3 +147,47 @@ export function avalancheAnalysis(dataset, width = 5) {
 
     return results;
 }
+
+
+export function summarizeStatistics(dataset, width = 5) {
+    if (dataset.length === 0) {
+        throw new Error("Dataset cannot be empty");
+    }
+
+    const xBits = bitDistribution(dataset, "x", width);
+    const yBits = bitDistribution(dataset, "y", width);
+
+    const avalanche = avalancheAnalysis(dataset, width);
+
+    const averageAvalanche = avalanche.length === 0
+        ? null
+        : avalanche.reduce(
+            (sum, item) => sum + item.percentage,
+            0
+        ) / avalanche.length;
+
+    return {
+        sampleSize: dataset.length,
+
+        uniqueX: new Set(
+            dataset.map(point => point.x)
+        ).size,
+
+        uniqueY: new Set(
+            dataset.map(point => point.y)
+        ).size,
+
+        xOnesPercentage:
+            (xBits.ones / (dataset.length * width)) * 100,
+
+        yOnesPercentage:
+            (yBits.ones / (dataset.length * width)) * 100,
+
+        correlationX: correlation(dataset, "x"),
+        correlationY: correlation(dataset, "y"),
+
+        avalanchePairs: avalanche.length,
+        averageAvalanchePercentage: averageAvalanche
+    };
+}
+

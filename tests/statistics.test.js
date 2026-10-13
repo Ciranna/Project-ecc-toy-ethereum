@@ -10,7 +10,8 @@ import {
     bitDistribution,
     correlation,
     hammingDistance,
-    avalancheAnalysis
+    avalancheAnalysis,
+    summarizeStatistics
 } from "../js/statistics.js";
 
 
@@ -80,3 +81,21 @@ test("avalanche pairs differ by one input bit", () => {
         );
     }
 });
+
+
+test("statistical summary is consistent", () => {
+    const summary = summarizeStatistics(dataset);
+
+    assert.equal(summary.sampleSize, 8);
+    assert.equal(summary.uniqueX, 4);
+    assert.equal(summary.uniqueY, 8);
+
+    assert.equal(summary.xOnesPercentage, 30);
+
+    assert.ok(
+        Math.abs(summary.correlationX) < 1e-12
+    );
+
+    assert.ok(summary.avalanchePairs > 0);
+});
+

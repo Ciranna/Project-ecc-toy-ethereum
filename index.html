@@ -159,6 +159,48 @@
 
             <div id="statistics-results" hidden>
 
+
+                <div class="summary-section">
+
+                    <h3>Statistical Summary</h3>
+
+                    <div class="summary-grid">
+
+                        <div class="summary-item">
+                            <span>Sample Size</span>
+                            <strong id="summary-sample"></strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Unique X Values</span>
+                            <strong id="summary-unique-x"></strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Unique Y Values</span>
+                            <strong id="summary-unique-y"></strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>X Bits Equal to 1</span>
+                            <strong id="summary-x-bits"></strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Y Bits Equal to 1</span>
+                            <strong id="summary-y-bits"></strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Average Bit Change</span>
+                            <strong id="summary-avalanche"></strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
                 <h3>Coordinate Distribution</h3>
 
                 <h4>X Coordinates</h4>
@@ -177,6 +219,58 @@
                 <div id="avalanche-results"></div>
 
             </div>
+
+        </section>
+
+
+
+        <section class="card scientific-conclusions">
+
+            <h2>Scientific Conclusions</h2>
+
+            <h3>1. Deterministic Mapping</h3>
+            <p>
+                Elliptic-curve scalar multiplication is deterministic:
+                the same private key always produces the same public point.
+            </p>
+
+            <h3>2. Coordinate Distribution</h3>
+            <p>
+                The coordinates are not uniformly distributed over the
+                entire finite field. Their distribution is constrained
+                by the elliptic-curve equation and the selected subgroup.
+            </p>
+
+            <h3>3. Input-Output Correlation</h3>
+            <p>
+                A low Pearson correlation does not imply statistical
+                independence or cryptographic security. Scalar
+                multiplication remains a deterministic algebraic mapping.
+            </p>
+
+            <h3>4. Avalanche-like Behaviour</h3>
+            <p>
+                Flipping one input bit can change several bits of the
+                resulting point representation. However, elliptic-curve
+                scalar multiplication does not rely on the same avalanche
+                criterion typically studied for cryptographic hash functions.
+            </p>
+
+            <h3>5. One-Way Property</h3>
+            <p>
+                For appropriately chosen real-world elliptic curves,
+                computing Q = kG is efficient, while recovering k from Q
+                is computationally difficult under the elliptic-curve
+                discrete logarithm assumption.
+            </p>
+
+            <h3>6. Limitations</h3>
+            <p>
+                This experiment uses a toy curve over F17 and a base point
+                of order 9. It is not cryptographically secure.
+                Its statistical results are illustrative and cannot
+                establish the security of real-world elliptic curves.
+            </p>
 
         </section>
 
